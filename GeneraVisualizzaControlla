@@ -5,10 +5,10 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.Random;
 
-public class GeneraVisualizzaControlla {
+public class RandomSenzaRipetizioni {
     public static void main(String[] args) {
         Scanner tastiera = new Scanner(System.in);
-        String[] opzioni = {"Menu", "1 Genera Random", "2 Visualizzazione", "3 Controlla", "4 Fine"};
+        String[] opzioni = {"Menu", "1 Genera Random", "2 Visualizzazione", "3 Controllo", "4 Fine"};
         boolean esci = true;
         int[] nEstratti = new int[100];
 
@@ -24,6 +24,7 @@ public class GeneraVisualizzaControlla {
                     break;
 
                 case 3:
+                    System.out.println("Controllo");
                     controlla(nEstratti);
                     break;
 
