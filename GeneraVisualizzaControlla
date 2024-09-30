@@ -1,14 +1,16 @@
 
+
 import static utility.Tools.*;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
 public class RandomSenzaRipetizioni {
     public static void main(String[] args) {
         Scanner tastiera = new Scanner(System.in);
-        String[] opzioni = {"Menu", "1 Genera Random", "2 Visualizzazione", "3 Controllo", "4 Fine"};
+        String[] opzioni = {"Menu", "1 Genera Random", "2 Visualizzazione", "3 Controllo", "4 Raddoppia", "5 Fine"};
         boolean esci = true;
         int[] nEstratti = new int[100];
 
@@ -29,6 +31,13 @@ public class RandomSenzaRipetizioni {
                     break;
 
                 case 4:
+                    System.out.println("Raddoppia");
+                    System.out.println("\nVettore raddoppiato");
+                    int[] vettore2 = raddoppiaVettore(nEstratti);
+                    visualizza(vettore2);
+                    break;
+
+                case 5:
                     System.out.println("Fine");
                     esci = false;
                     break;
@@ -89,5 +98,14 @@ public class RandomSenzaRipetizioni {
             System.out.println("Il numero non e' presente");
         }
 
+    }
+
+    public static int[] raddoppiaVettore(int[] vet) {
+        int[] vet2 = new int[vet.length * 2];
+        for (int i = 0; i < vet.length; i++) {
+            vet2[i] = vet[i];
+        }
+
+        return vet2;
     }
 }
