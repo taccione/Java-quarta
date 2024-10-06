@@ -1,19 +1,17 @@
-enum Genere {
-    romanzo, manuale, thriller;
-}
+package mensola;
+
+import java.time.LocalDate;
 
 public class Libro {
     public String autore;
     public String titolo;
+    final double COSTOPAGINA = 0.05;
     public int pagine;
-    final double PREZZOPAGINE = 0.05;
-    Genere tipo;
-    
-    public String formattaDati() {
+    public Genere tipo;
+    public LocalDate dataDiPubblicazione;
 
-        return String.format("Autore: %s Titolo: %s Pagine: %s Prezzo: %f", autore, titolo, pagine, PREZZOPAGINE * (double) pagine);
-        
-
+    @Override
+    public String toString() {
+        return String.format("Autore: %s Titolo: %s Prezzo libro %f mensola.Genere: %s Data: %s", autore, titolo, COSTOPAGINA * pagine, tipo, dataDiPubblicazione);
     }
-
 }
