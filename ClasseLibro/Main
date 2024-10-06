@@ -1,0 +1,11 @@
+import java.util.Scanner;
+import static utility.Tools.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner tastiera = new Scanner(System.in);
+        final int MAXLIBRI = 3;
+        int [] Mensola = new int [MAXLIBRI];
+
+    }
+}
