@@ -25,20 +25,22 @@ public class Main {
             System.out.println(Arrays.toString(vettore2));
         }
 
-        if (test(vettore2, numero) != false) {
-            
+        /* if (test(vettore2, numero) != false) {
             System.out.printf("Il metodo funziona correttamente");
-            
         } else {
-            try {
-                if (test(vettore, numero) != false) {
-                    Thread.sleep(2000);
-                    exceptionMethod(vettore, numero);
-                }
-            } catch (Exception e) {
+            System.out.println("Controlla bene!");
+        }
+
+         */
+
+        try {
+            if (test(vettore, numero) != false) {
                 Thread.sleep(2000);
-                System.out.println(e.getMessage());
+                exceptionMethod(vettore2, numero);
             }
+        } catch (Exception e) {
+            Thread.sleep(2000);
+            System.out.println(e.getMessage());
         }
 
 
@@ -87,8 +89,12 @@ public class Main {
         for (int i = 0; i < vet.length; i++) {
             if (vet[i] == num) {
                 cont++;
+
+                if (cont == 0) {
+                    System.out.println("Il metodo funziona correttamente");
+                }
             } else {
-                throw new Exception("\nEccezione, il numero non e' presente!");
+                throw new Exception("Eccezione, il numero non e' presente!");
             }
         }
 
