@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner tastiera = new Scanner(System.in);
         final int MAXLIBRI = 3;
-        int [] Mensola = new int [MAXLIBRI];
+        int [] mensola = new int [MAXLIBRI];
 
     }
 }
