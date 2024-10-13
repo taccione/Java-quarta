@@ -32,7 +32,7 @@ public class Main {
 
         // Visualizza il numero totale di libri e il costo totale
         System.out.println("Hai aggiunto un totale di " + i + " libri");
-        System.out.printf("Il costo totale dei libri è: %f euro", costoTotale);
+        System.out.println("Costo totale: " + costoTotale + " euro");
         
         
     }
