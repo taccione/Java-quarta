@@ -1,0 +1,70 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Liste {
+    public static void main(String[] args) {
+        ArrayList<Integer> arrayDiProva = new ArrayList<>();
+
+        // add
+        arrayDiProva.add(10);
+        arrayDiProva.add(20);
+        arrayDiProva.add(30);
+        System.out.println("ArrayList dopo add: " + arrayDiProva);
+
+
+        arrayDiProva.add(0, 5);
+        System.out.println("ArrayList dopo addFirst: " + arrayDiProva);
+
+
+        arrayDiProva.add(arrayDiProva.size(), 40);
+        System.out.println("ArrayList dopo addLast: " + arrayDiProva);
+
+        arrayDiProva.remove(2);
+        System.out.println("ArrayList dopo remove (indice 2): " + arrayDiProva);
+
+        System.out.print("ArrayList con forEach: ");
+        arrayDiProva.forEach(element -> System.out.print(element + " "));
+        System.out.println();
+
+        arrayDiProva.clear();
+        System.out.println("ArrayList dopo clear: " + arrayDiProva);
+
+        arrayDiProva.add(50);
+        arrayDiProva.add(60);
+        arrayDiProva.add(70);
+        arrayDiProva.add(80);
+
+        System.out.println("ArrayList contiene 60? " + arrayDiProva.contains(60));
+
+        System.out.println("Primo elemento (get(0)): " + arrayDiProva.get(0));
+        System.out.println("Ultimo elemento (get(size-1)): " + arrayDiProva.get(arrayDiProva.size() - 1));
+
+        System.out.println("Indice di 70: " + arrayDiProva.indexOf(70));
+
+        System.out.println("L'ArrayList è vuoto? " + arrayDiProva.isEmpty());
+
+        arrayDiProva.add(60); // Aggiungiamo un duplicato
+        System.out.println("Ultimo indice di 60: " + arrayDiProva.lastIndexOf(60));
+
+        arrayDiProva.remove(0);
+        System.out.println("ArrayList dopo removeFirst: " + arrayDiProva);
+
+        arrayDiProva.remove(arrayDiProva.size() - 1);
+        System.out.println("ArrayList dopo removeLast: " + arrayDiProva);
+
+        arrayDiProva.set(1, 100);
+        System.out.println("ArrayList dopo set (indice 1 a 100): " + arrayDiProva);
+
+        ArrayList<Integer> altraLista = new ArrayList<>();
+        altraLista.add(50);
+        altraLista.add(100);
+        altraLista.add(70);
+        System.out.println("L'ArrayList è uguale a altraLista? " + arrayDiProva.equals(altraLista));
+
+        System.out.println("Dimensione dell'ArrayList: " + arrayDiProva.size());
+
+        Collections.reverse(arrayDiProva);
+        System.out.println("ArrayList invertito: " + arrayDiProva);
+    }
+}
