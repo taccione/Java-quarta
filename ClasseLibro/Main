@@ -14,7 +14,7 @@ public class Main {
         boolean uscita = false;
         int cont = 0;
         do {
-            String[] opzioni = {"---MENSOLA---", "1- Inserimento", "2- Visualizza", "3- Fine"};
+            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizza", "3.Elimina", "4. Fine"};
             int scelta = Menu(opzioni, tastiera);
             switch (scelta) {
 
@@ -45,6 +45,18 @@ public class Main {
                 }
 
                 case 3 -> {
+                    System.out.println("Elimina");
+                    System.out.println("Quale libro vuoi cancellare? (1-" + cont + ")");
+                    int sceltaLibro = Integer.parseInt(tastiera.nextLine());
+                    cancellaLibro(mensola, cont, sceltaLibro);
+                    if(cancellaLibro(mensola,cont,sceltaLibro) > 0 )
+                        System.out.println("Libro cancellato con successo.");
+                    else{
+                        System.out.println("Scelta non valida.");
+                    }
+                }
+
+                case 4 -> {
                     System.out.println("Fine");
                     uscita = true;
                 }
@@ -53,6 +65,7 @@ public class Main {
     }
 
     public static boolean libroDoppio(Libro[] mensola, int cont, Libro nuovoLibro) {
+        
         for (int i = 0; i < cont; i++) {
             if (mensola[i].Autore.equalsIgnoreCase(nuovoLibro.Autore) &&
                     mensola[i].Titolo.equalsIgnoreCase(nuovoLibro.Titolo)) {
@@ -61,4 +74,22 @@ public class Main {
         }
         return false; // Nessun doppione trovato
     }
+
+    public static int cancellaLibro(Libro[] mensola, int cont, int sceltaLibro) {
+        
+        if (sceltaLibro > 0 && sceltaLibro <= cont) {
+            for (int i = sceltaLibro - 1; i < cont - 1; i++) {
+                mensola[i] = mensola[i + 1]; // Sposta i libri verso sinistra
+            }
+            mensola[cont - 1] = null; // Libera l'ultimo spazio
+            cont--;
+            return 1;
+            
+            
+        } else {
+            
+            return 0;
+        }
+    }
+    
 }
