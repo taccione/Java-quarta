@@ -15,7 +15,7 @@ public class Main {
         boolean uscita = false;
         int cont = 0;
         do {
-            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizza", "3.Elimina", "4. Fine"};
+            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizza", "3. Elimina", "4. Ricerca", "5. Modifica data di pubblicazione", "6. Fine"};
             int scelta = Menu(opzioni, tastiera);
             switch (scelta) {
 
