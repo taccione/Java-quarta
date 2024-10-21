@@ -15,7 +15,7 @@ public class Main {
         boolean uscita = false;
         int cont = 0;
         do {
-            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizza", "3. Elimina", "4. Ricerca", "5. Modifica data di pubblicazione", "6. Fine"};
+            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizza", "3. Elimina", "4. Ricerca", "5. Modifica data di pubblicazione", "6. Ricerca (Find Index)", "7. Ricerca (Find ALl)", "8.Fine"};
             int scelta = Menu(opzioni, tastiera);
             switch (scelta) {
 
@@ -91,6 +91,30 @@ public class Main {
                 }
 
                 case 6 -> {
+                    System.out.println("Find index");
+                    System.out.print("Inserisci il titolo: ");
+                    String titolo = tastiera.nextLine();
+                    int trovato = 0;
+                    try {
+                        trovato = findIndex(mensola, titolo, cont);
+                        if (trovato > 0)
+                            System.out.println("Libro presente e trovato all' indice: " + trovato);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+
+                case 7 -> {
+                    System.out.println("Find all");
+                    System.out.println("Inserisci il titolo: ");
+                    String titolo = tastiera.nextLine();
+                    System.out.println("Libro scritto dall'autore: \n");
+                    findAll(mensola, titolo, cont);
+                }
+
+
+                case 8 -> {
                     System.out.println("Fine");
                     uscita = true;
                 }
@@ -103,19 +127,19 @@ public class Main {
         for (int i = 0; i < cont; i++) {
             if (mensola[i].Autore.equalsIgnoreCase(nuovoLibro.Autore) &&
                     mensola[i].Titolo.equalsIgnoreCase(nuovoLibro.Titolo)) {
-                return true; // Doppione trovato
+                return true;
             }
         }
-        return false; // Nessun doppione trovato
+        return false;
     }
 
     public static int cancellaLibro(Libro[] mensola, int cont, int sceltaLibro) {
 
         if (sceltaLibro > 0 && sceltaLibro <= cont) {
             for (int i = sceltaLibro - 1; i < cont - 1; i++) {
-                mensola[i] = mensola[i + 1]; // Sposta i libri verso sinistra
+                mensola[i] = mensola[i + 1];
             }
-            mensola[cont - 1] = null; // Libera l'ultimo spazio
+            mensola[cont - 1] = null;
             cont--;
             return 1;
 
@@ -131,18 +155,51 @@ public class Main {
         for (int i = 0; i < cont; i++) {
             if (mensola[i].Titolo.equalsIgnoreCase(titolo) && mensola[i].Autore.equalsIgnoreCase(autore))
                 return mensola[i];  // Libro trovato
-            
+
         }
-        return null;  // Libro non trovato
+        return null;
     }
 
     public static boolean modificaData(Libro libro, String nuovaData) {
         if (libro != null) {
-            libro.dataDiPubblicazione = LocalDate.parse(nuovaData);  // Modifica la data di pubblicazione
+            libro.dataDiPubblicazione = LocalDate.parse(nuovaData);
             return true;
         }
         return false;
     }
 
+    public static int findIndex(Libro[] mensola, String titolo, int cont) throws Exception {
+        int contatore = 0;
+        for (int i = 0; i < cont; i++) {
+            if (mensola[i].Titolo.equals(titolo)) {
+                contatore++;
+            } else {
+                throw new Exception("Libro non trovato");
+            }
 
+        }
+        return contatore;
+    }
+
+    public static String[] findAll(Libro[] mensola, String titolo, int cont) {
+        int contatore = 0;
+
+        for (int i = 0; i < cont; i++) {
+            if (mensola[i].Titolo.equalsIgnoreCase(titolo))
+                contatore++;
+            System.out.println(mensola[i].Autore);
+        }
+        if (contatore > 0) {
+            String[] mensola2 = new String[contatore];         // mensola 2 di dimensione contatore
+
+            contatore = 0;
+            for (int i = 0; i < cont; i++) {
+                if (mensola[i].Titolo.equals(titolo)) {
+                    mensola2[i] = mensola[i].Autore;
+                }
+            }
+            return mensola2;
+        }
+        return null;
+    }
 }
