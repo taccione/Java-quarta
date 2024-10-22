@@ -15,7 +15,7 @@ public class Main {
         boolean uscita = false;
         int cont = 0;
         do {
-            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizza", "3. Elimina", "4. Ricerca", "5. Modifica data di pubblicazione", "6. Ricerca (Find Index)", "7. Ricerca (Find ALl)", "8.Fine"};
+            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizza", "3. Elimina", "4. Ricerca", "5. Modifica data di pubblicazione", "6. Ricerca (Find Index)", "7. Ricerca (Find ALl)", "8.Remove All", "9. Fine"};
             int scelta = Menu(opzioni, tastiera);
             switch (scelta) {
 
@@ -109,12 +109,20 @@ public class Main {
                     System.out.println("Find all");
                     System.out.println("Inserisci il titolo: ");
                     String titolo = tastiera.nextLine();
-                    System.out.println("Libro scritto dall'autore: \n");
+                    System.out.println("Libro scritto dall'autore:");
                     findAll(mensola, titolo, cont);
                 }
 
-
                 case 8 -> {
+                    System.out.println("Remove All");
+                    System.out.println("Inserisci l'autore: ");
+                    String autore = tastiera.nextLine();
+                    System.out.println("Libri scritti da autori diversi da " + autore);
+                    removeAll(mensola, autore, cont);
+                }
+
+
+                case 9 -> {
                     System.out.println("Fine");
                     uscita = true;
                 }
@@ -185,7 +193,7 @@ public class Main {
         int contatore = 0;
 
         for (int i = 0; i < cont; i++) {
-            if (mensola[i].Titolo.equalsIgnoreCase(titolo))
+            if (mensola[i].Titolo.equals(titolo))
                 contatore++;
             System.out.println(mensola[i].Autore);
         }
@@ -195,11 +203,35 @@ public class Main {
             contatore = 0;
             for (int i = 0; i < cont; i++) {
                 if (mensola[i].Titolo.equals(titolo)) {
-                    mensola2[i] = mensola[i].Autore;
+                    mensola2[contatore++] = mensola[i].Autore;
                 }
             }
             return mensola2;
         }
         return null;
     }
+
+
+    public static String[] removeAll(Libro[] mensola, String autore, int cont) {
+        int contatore = 0;
+
+        for (int i = 0; i < cont; i++) {
+            if (!mensola[i].Autore.equals(autore))
+                contatore++;
+
+        }
+        if (contatore > 0) {
+            String[] mensola2 = new String[contatore]; // mensola 2 di dimensione contatore
+
+            for (int i = 0; i < cont; i++) {
+                if (!mensola[i].Autore.equals(autore)) {
+                    mensola2[i] = mensola[i].Titolo;
+                    System.out.println(mensola[i].Titolo);
+                }
+            }
+            return mensola2;
+        }
+        return null;
+    }
+
 }
