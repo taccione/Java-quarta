@@ -31,9 +31,9 @@ public class ListLibrary {
                             System.out.println("Libro gia' presente");
 
                         cont++;
-                    } else {
+                    } else 
                         System.out.println("Mensola piena");
-                    }
+                    
 
 
                 }
