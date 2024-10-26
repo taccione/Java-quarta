@@ -1,0 +1,93 @@
+import mensola.Libro;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import static frontScreen.FrontEnd.*;
+import static utility.Tools.Menu;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner tastiera = new Scanner(System.in);
+        boolean uscita = false;
+        final int MAXLIBRI = 3;
+        ArrayList<Libro> mensola = new ArrayList<>(MAXLIBRI);
+
+        do {
+            String[] opzioni = {"---MENSOLA---", "1. Inserimento", "2. Visualizzazione", "3. Fine"};
+            int scelta = Menu(opzioni, tastiera);
+
+            switch (scelta) {
+                case 1 -> {
+                    System.out.println("Inserimento");
+                    if (mensola.size() < MAXLIBRI) {
+                        Libro nuovoLibro = LeggiLibro(tastiera);  // metodo di FrontEnd
+
+                        if (!libroDoppio(mensola, nuovoLibro))
+                            mensola.add(nuovoLibro);  // aggiunge nuovoLibro alla lista
+                        else
+                            System.out.println("Libro già presente\n" + "Libro non aggiunto alla mensola");
+
+                    } else
+                        System.out.println("Non è possibile inserire altri libri");
+
+                }
+
+                case 2 -> {
+                    System.out.println("Visualizzazione");
+                    System.out.println("Quale tra i " + mensola.size() + " libri vuoi visualizzare?");
+                    
+
+                    int sceltaLibro = tastiera.nextInt();
+                    if (sceltaLibro > 0 && sceltaLibro <= mensola.size())
+                        System.out.println(mensola.get(sceltaLibro - 1).FormattaDati());  // stampa il libro all'indice sceltaLibro - 1
+                    else
+                        System.out.println("Scelta non valida");
+
+
+                }
+
+                case 3 -> {
+                    System.out.println("Elimina");
+                    System.out.println("Quale libro vuoi cancellare?");
+
+                    int sceltaLibro = tastiera.nextInt();
+
+                    if (cancellaLibro(mensola, sceltaLibro))
+                        System.out.println("Libro cancellato con successo.");
+                    else
+                        System.out.println("Scelta non valida.");
+
+
+                }
+
+                case 4 -> {
+                    System.out.println("Fine");
+                    uscita = true;
+                }
+
+            }
+        } while (!uscita);
+
+    }
+
+    public static boolean libroDoppio(ArrayList<Libro> mensola, Libro nuovoLibro) {
+        for (Libro libro : mensola) {
+            if (libro.Autore.equals(nuovoLibro.Autore) && libro.Titolo.equals(nuovoLibro.Titolo)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static boolean cancellaLibro(ArrayList<Libro> mensola, int sceltaLibro) {
+        if (sceltaLibro > 0 && sceltaLibro <= mensola.size()) {
+            mensola.remove(sceltaLibro - 1);
+            return true;
+        } else
+            return false;
+
+    }
+}
